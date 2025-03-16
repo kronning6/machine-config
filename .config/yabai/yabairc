@@ -1,0 +1,88 @@
+#!/usr/bin/env sh
+
+# https://digitalblake.com/2021/08/27/yabai-and-skhd-configs/
+
+# When SIP is partially disabled
+# https://github.com/koekeishiya/yabai/wiki/Disabling-System-Integrity-Protection
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# These are the main features I'm interested in using that require SIP to be partially disabled
+#
+# yabai -m display [<DISPLAY_SEL>] --space <SPACE_SEL>
+# yabai -m space --focus <SPACE_SEL>
+# yabai -m space --move <SPACE_SEL>
+# yabai -m space --swap <SPACE_SEL>
+# yabai -m space --display <DISPLAY_SEL>
+#
+#
+# These options also require SIP to be partially disabled
+# yabai --load-sa
+# yabai --uninstall-sa
+#
+# yabai -m config
+#   window_shadow [<BOOL_SEL>|float]
+#   window_opacity [<BOOL_SEL>]
+#   window_opacity_duration [<FLOAT_SEL>]
+#   active_window_opacity [<FLOAT_SEL>]
+#   normal_window_opacity [<FLOAT_SEL>]
+#   window_animation_duration [<FLOAT_SEL>]
+#
+# yabai -m space [<SPACE_SEL>] <COMMAND>
+#   --focus <SPACE_SEL>
+#   --switch <SPACE_SEL>
+#   --create [<DISPLAY_SEL>]
+#   --destroy [<SPACE_SEL>]
+#   --move <SPACE_SEL>
+#   --swap <SPACE_SEL>
+#   --display <DISPLAY_SEL>
+#
+# yabai -m window [<WINDOW_SEL>] <COMMAND>
+#   --toggle sticky|pip|shadow|<LABEL>
+#   --sub-layer <LAYER>
+#   --opacity <FLOAT_SEL>
+#   --raise [<WINDOW_SEL>]
+#   --lower [<WINDOW_SEL>]
+#   --scratchpad [<LABEL>|recover]
+# yabai -m rule <COMMAND>
+#   (sticky, sub-layer, opacity, scratchpad)
+
+
+
+
+yabai -m config layout bsp
+
+yabai -m config window_placement second_child
+
+yabai -m config top_padding    10
+yabai -m config bottom_padding 10
+yabai -m config left_padding   10
+yabai -m config right_padding  10
+yabai -m config window_gap     10
+
+# yabai -m config focus_follows_mouse autoraise
+# yabai -m config mouse_follows_focus on
+
+# yabai -m config window_opacity on
+# yabai -m config active_window_opacity 1.0
+# yabai -m config normal_window_opacity 0.95
+
+yabai -m mouse_drop_action swap
+
+# yabai -m auto_balance on
+# yabai -m window_zoom_persist off
+
+# disable specific apps
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+# yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Docker Desktop$" manage=off
+apps='^(IntelliJ IDEA|WebStorm)$'
+yabai -m rule --add app="JetBrains Toolbox" manage=off
+yabai -m rule --add app="${apps}" manage=off
+yabai -m rule --add app="${apps}" title="( – )" manage=on
+yabai -m rule --add app="DataGrip" title="Settings" manage="off"
+yabai -m rule --add app="Arc" title="Kyle" manage=off
+
+echo "yabai configuration loaded.."

@@ -1,0 +1,19 @@
+# https://starship.rs/config/#prompt
+
+format = '$all'
+
+[aws]
+format = ''
+
+[character]
+success_symbol = '[❯](bold black)'
+
+[gcloud]
+format = ''
+[time]
+# set to false to show time
+disabled = true
+style = 'white'
+format = '[$time]($style) '
+time_format = '%a %T'
+utc_time_offset = 'local'

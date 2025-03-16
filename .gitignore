@@ -1,0 +1,12 @@
+.git-email
+!.config/
+.config/alacritty/themes/current.toml
+.config/alacritty/themes/current.yml
+.config/ghostty/theme_config/current
+.config/lvim/lua/kronning6/current-theme.lua
+.config/nvim/lua/kronning6/current-theme.lua
+.config/nvim-kickstart
+.config/nvim-lazyvim
+.config/tmux/plugins
+.config/tmux/themes/current.conf
+.config/wezterm/themes/current.lua
