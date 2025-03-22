@@ -18,6 +18,8 @@ vim.keymap.set('n', 'n', 'nzzzv')
 
 -- Other Custom Keymaps
 vim.keymap.set('n', '<C-s>', ':w<cr>')
+vim.keymap.set('n', '<M-s>', ':w<cr>')
+vim.keymap.set('n', '<leader>ww', ':w<cr>')
 -- vim.keymap.set('n', '<S-x>', ':BufferKill<CR>')
 vim.keymap.set('x', 'p', [["_dP]])
 -- vim.keymap.set('x', '<Space>P', [["_dP]])
