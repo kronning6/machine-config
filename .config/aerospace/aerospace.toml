@@ -270,7 +270,7 @@ if.app-id = 'com.jetbrains.datagrip'
 run = "move-node-to-workspace 8"
 
 [[on-window-detected]]
-if.app-id = 'com.microsoft.teams2'
+if.app-id = 'com.todesktop.230313mzl4w4u92'
 run = "move-node-to-workspace 9"
 
 
