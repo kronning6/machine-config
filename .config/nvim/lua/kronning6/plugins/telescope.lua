@@ -99,7 +99,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
     end, { desc = 'Search [F]iles (Git Files)' })
     vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>st', builtin.live_grep, { desc = '[S]earch Files (Live Grep)' })
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+    vim.keymap.set('n', '<leader><leader>', function()
+      builtin.buffers { sort_mru = true }
+    end, { desc = '[ ] Find existing buffers' })
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
 
