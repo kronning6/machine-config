@@ -86,6 +86,7 @@ outer.right =      0
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 cmd-h = [] # Disable "hide application"
 cmd-alt-h = [] # Disable "hide others"
+cmd-m = [] # Disable "minimize"
 
 
 # -- Modifying the Layout --
