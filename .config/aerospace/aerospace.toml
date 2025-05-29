@@ -233,17 +233,15 @@ f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling
 # backspace = ['close-all-windows-but-current', 'mode main']
 
 # `aerospace list-apps`
+
+# Left hand
+
 [[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
-if.during-aerospace-startup = true
+if.app-id = 'com.spotify.client'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
+if.app-id = 'com.hnc.Discord'
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
@@ -251,28 +249,79 @@ if.app-id = 'notion.id'
 run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
+if.app-id = 'com.apple.Notes'
+run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+if.during-aerospace-startup = true
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
-if.app-id = 'com.hnc.Discord'
+if.app-id = 'com.tinyspeck.slackmacgap'
 run = "move-node-to-workspace 5"
 
+# Right hand
 [[on-window-detected]]
-if.app-id = 'com.spotify.client'
+if.app-id = 'com.linear'
 run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
-if.app-id = 'com.linear'
+if.app-id = 'com.mitchellh.ghostty'
 run = "move-node-to-workspace 7"
 
 [[on-window-detected]]
-if.app-id = 'com.jetbrains.datagrip'
-run = "move-node-to-workspace 8"
+if.app-id = 'com.github.wez.wezterm'
+run = "move-node-to-workspace 7"
 
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
+run = "move-node-to-workspace 8"
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.datagrip'
 run = "move-node-to-workspace 9"
+
+# [[on-window-detected]]
+# if.app-id = 'com.google.Chrome'
+# if.during-aerospace-startup = true
+# run = "move-node-to-workspace 1"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.github.wez.wezterm'
+# run = "move-node-to-workspace 2"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.mitchellh.ghostty'
+# run = "move-node-to-workspace 2"
+#
+# [[on-window-detected]]
+# if.app-id = 'notion.id'
+# run = "move-node-to-workspace 3"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.tinyspeck.slackmacgap'
+# run = "move-node-to-workspace 4"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.hnc.Discord'
+# run = "move-node-to-workspace 5"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.spotify.client'
+# run = "move-node-to-workspace 6"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.linear'
+# run = "move-node-to-workspace 7"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.jetbrains.datagrip'
+# run = "move-node-to-workspace 8"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.todesktop.230313mzl4w4u92'
+# run = "move-node-to-workspace 9"
 
 
 [workspace-to-monitor-force-assignment]
