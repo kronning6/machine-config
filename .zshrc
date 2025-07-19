@@ -224,7 +224,8 @@ fzf_tokyonight-storm() {
 
 # functions
 stlight() {
-    set_theme "catppuccin-latte"
+    # set_theme "catppuccin-latte"
+    set_theme "tokyonight-day"
 }
 
 stdark() {
@@ -306,3 +307,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# opencode
+export PATH=/Users/kronning/.opencode/bin:$PATH

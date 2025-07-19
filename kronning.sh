@@ -27,6 +27,7 @@ DOTFILES=(
   ".config/nvim"
   ".config/nvim-kickstart"
   ".config/nvim-lazyvim"
+  ".config/opencode"
   ".config/ranger"
   ".config/sesh"
   # ".config/skhd"
