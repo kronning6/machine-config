@@ -3,6 +3,7 @@
 DIR=$HOME/code/machine-config
 EMAIL_FILE="${DIR}/.git-email"
 
+# TODO: Instead of doing this here, let's create a setup script that populates a gitignored file
 if [ -f "$EMAIL_FILE" ]; then
   GIT_EMAIL=$(cat "$EMAIL_FILE")
   echo "Using stored Git email: $GIT_EMAIL"
@@ -44,6 +45,7 @@ for dotfile in "${DOTFILES[@]}";do
   ln -sf "${DIR}/${dotfile}" "${HOME}/${dotfile}"
 done
 
+# TODO: Don't do this. Instead make .gitconfig a template file
 if [ -n "$GIT_EMAIL" ]; then
   git config --global user.email "$GIT_EMAIL"
   echo "Git email configured: $GIT_EMAIL"
