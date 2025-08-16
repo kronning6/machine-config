@@ -65,6 +65,9 @@ aerospace               font-hack-nerd-font     ghostty                 ngrok   
 
 ### Plugins to try out
 
+- Buffer Navigation
+  - https://github.com/wojciech-kulik/filenav.nvim
+  - https://github.com/folke/flash.nvim
 - File management
   - https://github.com/mbbill/undotree
   - https://github.com/X3eRo0/dired.nvim
