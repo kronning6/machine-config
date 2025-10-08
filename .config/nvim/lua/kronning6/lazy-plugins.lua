@@ -40,6 +40,7 @@ require('lazy').setup {
   require 'kronning6.plugins.markdown',
   require 'kronning6.plugins.fringe-mode',
   require 'kronning6.plugins.aerial',
+  require 'kronning6.plugins.supermaven',
 }
 
 -- vim: ts=2 sts=2 sw=2 et
