@@ -54,7 +54,7 @@ EXISTING_PANE_IN_STORAGE=$(tmux list-panes -t "$OPENCODE_SESSION:$OPENCODE_WINDO
 
 if [[ -n "$EXISTING_PANE_IN_CURRENT" ]]; then
     # Move the pane back to opencode session (specific project window)
-    tmux move-pane -s "$CURRENT_SESSION:$CURRENT_WINDOW.$EXISTING_PANE_IN_CURRENT" -t "$OPENCODE_SESSION:$OPENCODE_WINDOW"
+    tmux move-pane -s "$CURRENT_SESSION:$CURRENT_WINDOW.$EXISTING_PANE_IN_CURRENT" -t "$OPENCODE_SESSION:$OPENCODE_WINDOW" -h
 elif [[ -n "$EXISTING_PANE_IN_OTHER_WINDOW" ]]; then
     # Move the pane from another window in current session to current window
     tmux move-pane -s "$CURRENT_SESSION:$PANE_SOURCE_WINDOW.$EXISTING_PANE_IN_OTHER_WINDOW" -t "$CURRENT_SESSION:$CURRENT_WINDOW" -h
