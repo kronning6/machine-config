@@ -30,7 +30,7 @@ if [[ "$CURRENT_SESSION" == "$OPENCODE_SESSION" ]]; then
 fi
 
 # Check if the opencode pane exists anywhere in the current session
-EXISTING_PANE_INFO=$(tmux list-panes -s -t "$CURRENT_SESSION" -F "#{window_index} #{pane_index} #{pane_title}" | grep "$OPENCODE_PANE_TITLE")
+EXISTING_PANE_INFO=$(tmux list-panes -s -t "$CURRENT_SESSION" -F "#{window_index} #{pane_index} #{pane_current_command}" | grep "opencode")
 
 # Parse the pane location
 EXISTING_PANE_IN_CURRENT=""
@@ -49,7 +49,7 @@ if [[ -n "$EXISTING_PANE_INFO" ]]; then
 fi
 
 # Check if the opencode pane exists in the opencode session window
-EXISTING_PANE_IN_STORAGE=$(tmux list-panes -t "$OPENCODE_SESSION:$OPENCODE_WINDOW" -F "#{pane_index} #{pane_title}" | grep "$OPENCODE_PANE_TITLE" | cut -d' ' -f1)
+EXISTING_PANE_IN_STORAGE=$(tmux list-panes -t "$OPENCODE_SESSION:$OPENCODE_WINDOW" -F "#{pane_index} #{pane_current_command}" | grep "opencode" | cut -d' ' -f1)
 
 
 if [[ -n "$EXISTING_PANE_IN_CURRENT" ]]; then
@@ -60,18 +60,18 @@ elif [[ -n "$EXISTING_PANE_IN_OTHER_WINDOW" ]]; then
     tmux move-pane -s "$CURRENT_SESSION:$PANE_SOURCE_WINDOW.$EXISTING_PANE_IN_OTHER_WINDOW" -t "$CURRENT_SESSION:$CURRENT_WINDOW" -h
     # Get the pane index after the move and select it
     FINAL_PANE=$(tmux display-message -p -F "#{pane_index}")
-    tmux select-pane -t "$CURRENT_SESSION:$CURRENT_WINDOW.$FINAL_PANE" -T "$OPENCODE_PANE_TITLE"
+    tmux select-pane -t "$CURRENT_SESSION:$CURRENT_WINDOW.$FINAL_PANE"
 elif [[ -n "$EXISTING_PANE_IN_STORAGE" ]]; then
     # Bring the pane from opencode storage to current window (right split)
     tmux move-pane -s "$OPENCODE_SESSION:$OPENCODE_WINDOW.$EXISTING_PANE_IN_STORAGE" -t "$CURRENT_SESSION:$CURRENT_WINDOW" -h
     # Get the pane index after the move and select it
     FINAL_PANE=$(tmux display-message -p -F "#{pane_index}")
-    tmux select-pane -t "$CURRENT_SESSION:$CURRENT_WINDOW.$FINAL_PANE" -T "$OPENCODE_PANE_TITLE"
+    tmux select-pane -t "$CURRENT_SESSION:$CURRENT_WINDOW.$FINAL_PANE"
 else
     # Create a new opencode pane in current window (right split)
     tmux split-window -t "$CURRENT_SESSION:$CURRENT_WINDOW" -h -c "$CURRENT_PATH" "opencode '$CURRENT_PATH'"
     # Get the pane index after creation and select it
     FINAL_PANE=$(tmux display-message -p -F "#{pane_index}")
-    tmux select-pane -t "$CURRENT_SESSION:$CURRENT_WINDOW.$FINAL_PANE" -T "$OPENCODE_PANE_TITLE"
+    tmux select-pane -t "$CURRENT_SESSION:$CURRENT_WINDOW.$FINAL_PANE"
 fi
 
