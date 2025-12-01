@@ -325,4 +325,5 @@ run = "move-node-to-workspace 9"
 
 
 [workspace-to-monitor-force-assignment]
-S = ['LG SDQHD', 'Built-in Retina Display', 'LG HDR WFHD', 'LG UltraFine']
+S = ['USB C1', 'USB C2', 'LG SDQHD', 'Built-in Retina Display', 'LG HDR WFHD', 'LG UltraFine']
+# S = ['LG SDQHD', 'Built-in Retina Display', 'LG HDR WFHD', 'LG UltraFine']
