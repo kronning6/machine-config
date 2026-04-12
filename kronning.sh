@@ -2,6 +2,8 @@
 
 DIR=$HOME/code/machine-config
 EMAIL_FILE="${DIR}/.git-email"
+GITCONFIG_TEMPLATE="${DIR}/.gitconfig"
+GITCONFIG_TARGET="${HOME}/.gitconfig"
 
 # TODO: Instead of doing this here, let's create a setup script that populates a gitignored file
 if [ -f "$EMAIL_FILE" ]; then
@@ -19,7 +21,6 @@ fi
 
 DOTFILES=(
   ".zshrc"
-  ".gitconfig"
   ".config/aerospace"
   ".config/alacritty"
   ".config/ghostty"
@@ -45,10 +46,31 @@ for dotfile in "${DOTFILES[@]}";do
   ln -sf "${DIR}/${dotfile}" "${HOME}/${dotfile}"
 done
 
-# TODO: Don't do this. Instead make .gitconfig a template file
+cp "$GITCONFIG_TEMPLATE" "$GITCONFIG_TARGET"
+
 if [ -n "$GIT_EMAIL" ]; then
-  git config --global user.email "$GIT_EMAIL"
-  echo "Git email configured: $GIT_EMAIL"
+  awk -v email="$GIT_EMAIL" '
+    /^\[user\]$/ { in_user = 1; print; next }
+    /^\[/ && $0 != "[user]" {
+      if (in_user && !inserted) {
+        print "  email = " email
+        inserted = 1
+      }
+      in_user = 0
+      print
+      next
+    }
+    in_user && $0 ~ /^[[:space:]]*email[[:space:]]*=/ { next }
+    { print }
+    END {
+      if (in_user && !inserted) {
+        print "  email = " email
+      }
+    }
+  ' "$GITCONFIG_TEMPLATE" > "$GITCONFIG_TARGET"
+  echo "Git email configured in $GITCONFIG_TARGET: $GIT_EMAIL"
+else
+  echo "Copied Git config template to $GITCONFIG_TARGET without an email override"
 fi
 
 if [ ! -d ~/.config/tmux/plugins/tpm ]; then
