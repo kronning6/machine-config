@@ -1,39 +1,92 @@
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
+  lazy = false,
   build = ':TSUpdate',
+  branch = 'main',
   config = function()
-    -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    local nvim_treesitter = require 'nvim-treesitter'
 
-    ---@diagnostic disable-next-line: missing-fields
-    require('nvim-treesitter.configs').setup {
-      ensure_installed = {
-        'bash',
-        'c',
-        'html',
-        'lua',
-        'markdown',
-        'vim',
-        'vimdoc',
-        'go',
-        'python',
-        'rust',
-        'tsx',
-        'javascript',
-        'typescript',
-        'toml',
-        'yaml',
-      },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
+    if not nvim_treesitter.install then
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = {
+          'bash',
+          'c',
+          'html',
+          'lua',
+          'markdown',
+          'vim',
+          'vimdoc',
+          'go',
+          'python',
+          'rust',
+          'tsx',
+          'javascript',
+          'typescript',
+          'toml',
+          'yaml',
+        },
+        auto_install = true,
+        highlight = { enable = true },
+        indent = { enable = true },
+      }
+      return
+    end
+
+    local parsers = {
+      'bash',
+      'c',
+      'diff',
+      'go',
+      'html',
+      'javascript',
+      'lua',
+      'luadoc',
+      'markdown',
+      'markdown_inline',
+      'python',
+      'query',
+      'rust',
+      'toml',
+      'tsx',
+      'typescript',
+      'vim',
+      'vimdoc',
+      'yaml',
     }
+    nvim_treesitter.install(parsers)
 
-    -- There are additional nvim-treesitter modules that you can use to interact
-    -- with nvim-treesitter. You should go explore a few and see what interests you:
-    --
-    --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-    --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-    --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    local function treesitter_try_attach(buf, language)
+      if not vim.treesitter.language.add(language) then
+        return
+      end
+
+      vim.treesitter.start(buf, language)
+      vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
+
+    local available_parsers = nvim_treesitter.get_available()
+    vim.api.nvim_create_autocmd('FileType', {
+      group = vim.api.nvim_create_augroup('kronning6-treesitter', { clear = true }),
+      callback = function(args)
+        local buf = args.buf
+        local filetype = args.match
+        local language = vim.treesitter.language.get_lang(filetype)
+        if not language then
+          return
+        end
+
+        local installed_parsers = nvim_treesitter.get_installed 'parsers'
+
+        if vim.tbl_contains(installed_parsers, language) then
+          treesitter_try_attach(buf, language)
+        elseif vim.tbl_contains(available_parsers, language) then
+          nvim_treesitter.install(language):await(function()
+            treesitter_try_attach(buf, language)
+          end)
+        else
+          treesitter_try_attach(buf, language)
+        end
+      end,
+    })
   end,
 }
