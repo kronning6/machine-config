@@ -1,5 +1,8 @@
 return {
   'stevearc/aerial.nvim',
+  keys = {
+    { '<leader>at', '<cmd>AerialToggle<cr>', desc = 'Toggle Aerial' },
+  },
   opts = {},
   -- Optional dependencies
   dependencies = {
