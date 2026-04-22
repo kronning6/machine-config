@@ -89,9 +89,7 @@ alias log_start_time='DATE_STRING=$(date +"%r %F");echo "Start Time: $DATE_STRIN
 alias log_end_time='DATE_STRING=$(date +"%r %F");echo "End Time: $DATE_STRING"'
 
 wt() {
-    MYPWD=${PWD}
-    code && cd machine-config && ./worktree.sh $1 $2
-    cd $MYPWD
+    /Users/kronning/code/machine-config/worktree.sh "$1" "$2"
 }
 
 fzf_catppuccin-latte() {
