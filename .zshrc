@@ -88,6 +88,12 @@ alias gitlog="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C
 alias log_start_time='DATE_STRING=$(date +"%r %F");echo "Start Time: $DATE_STRING"'
 alias log_end_time='DATE_STRING=$(date +"%r %F");echo "End Time: $DATE_STRING"'
 
+wt() {
+    MYPWD=${PWD}
+    code && cd machine-config && ./worktree.sh $1 $2
+    cd $MYPWD
+}
+
 fzf_catppuccin-latte() {
     export FZF_DEFAULT_OPTS=" \
     --color=bg+:#ccd1da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
