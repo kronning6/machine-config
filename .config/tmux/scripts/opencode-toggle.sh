@@ -1,32 +1,28 @@
 #!/bin/bash
 
 CURRENT_PATH=$(tmux display-message -p -F "#{pane_current_path}")
-if [[ "$CURRENT_PATH" =~ ^.*/code/([^/]+) ]]; then
-    PROJECT_NAME="${BASH_REMATCH[1]}"
-else
-    PROJECT_NAME=$(basename "$CURRENT_PATH")
-fi
+CURRENT_SESSION=$(tmux display-message -p -F "#{session_name}")
+CURRENT_WINDOW=$(tmux display-message -p -F "#{window_index}")
 
 OPENCODE_SESSION="opencode"
+
+# Exit if we're in the opencode tmux session.
+if [[ "$CURRENT_SESSION" == "$OPENCODE_SESSION" ]]; then
+    exit 0
+fi
+
+# Use the current tmux session name as the storage key.
+PROJECT_NAME="$CURRENT_SESSION"
 OPENCODE_WINDOW="$PROJECT_NAME"
-OPENCODE_PANE_TITLE="opencode-$PROJECT_NAME"
 
 # Ensure the opencode session exists
 if ! tmux has-session -t "$OPENCODE_SESSION" 2>/dev/null; then
     tmux new-session -d -s "$OPENCODE_SESSION" -n "$OPENCODE_WINDOW"
 else
     # Ensure project-specific window exists in opencode session
-    if ! tmux list-windows -t "$OPENCODE_SESSION" -F "#{window_name}" | grep -q "^$OPENCODE_WINDOW$"; then
+    if ! tmux list-windows -t "$OPENCODE_SESSION" -F "#{window_name}" | grep -Fxq -- "$OPENCODE_WINDOW"; then
         tmux new-window -t "$OPENCODE_SESSION" -n "$OPENCODE_WINDOW"
     fi
-fi
-
-CURRENT_SESSION=$(tmux display-message -p -F "#{session_name}")
-CURRENT_WINDOW=$(tmux display-message -p -F "#{window_index}")
-
-# Exit if we're in the opencode tmux session
-if [[ "$CURRENT_SESSION" == "$OPENCODE_SESSION" ]]; then
-    exit 0
 fi
 
 # Check if the opencode pane exists anywhere in the current session
@@ -74,4 +70,3 @@ else
     FINAL_PANE=$(tmux display-message -p -F "#{pane_index}")
     tmux select-pane -t "$CURRENT_SESSION:$CURRENT_WINDOW.$FINAL_PANE"
 fi
-
