@@ -8,5 +8,6 @@
 .config/nvim-kickstart
 .config/nvim-lazyvim
 .config/tmux/plugins
+.config/tmux/opencode-profiles.local
 .config/tmux/themes/current.conf
 .config/wezterm/themes/current.lua
