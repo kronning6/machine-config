@@ -92,6 +92,8 @@ move_pane_to_current_window() {
 
     if [[ "$source_window_id" != "$OPENCODE_WINDOW_ID" ]]; then
         tmux kill-pane -t "$placeholder_pane_id"
+    else
+        make_opencode_placeholder_only_pane "$OPENCODE_WINDOW_ID"
     fi
 
     select_moved_pane "$pane_id"
@@ -125,6 +127,23 @@ make_opencode_only_pane() {
     if [[ "$select_pane" == "true" ]]; then
         tmux select-pane -t "$pane_id"
     fi
+}
+
+make_opencode_placeholder_only_pane() {
+    local opencode_window_id="$1"
+    local keep_pane_id=""
+
+    while read -r pane_id pane_command; do
+        if [[ "$pane_command" == "opencode" ]]; then
+            return
+        fi
+
+        if [[ -z "$keep_pane_id" ]]; then
+            keep_pane_id="$pane_id"
+        elif [[ -n "$pane_id" ]]; then
+            tmux kill-pane -t "$pane_id"
+        fi
+    done < <(tmux list-panes -t "$opencode_window_id" -F "#{pane_id} #{pane_current_command}")
 }
 
 zoom_pane() {
