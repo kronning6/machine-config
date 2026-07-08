@@ -160,9 +160,9 @@ create_opencode_pane_in_window() {
 
     xdg_data_home=$(opencode_xdg_data_home)
     if [[ -n "$xdg_data_home" ]]; then
-        tmux split-window -P -F "#{pane_id}" -t "$opencode_window_id" -h -c "$CURRENT_PATH" -e "OPENCODE_EXPERIMENTAL_WORKSPACES=true" -e "XDG_DATA_HOME=$xdg_data_home" 'opencode "$PWD"'
+        tmux split-window -P -F "#{pane_id}" -t "$opencode_window_id" -h -c "$CURRENT_PATH" -e "XDG_DATA_HOME=$xdg_data_home" 'opencode "$PWD"'
     else
-        tmux split-window -P -F "#{pane_id}" -t "$opencode_window_id" -h -c "$CURRENT_PATH" -e "OPENCODE_EXPERIMENTAL_WORKSPACES=true" 'opencode "$PWD"'
+        tmux split-window -P -F "#{pane_id}" -t "$opencode_window_id" -h -c "$CURRENT_PATH" 'opencode "$PWD"'
     fi
 }
 
