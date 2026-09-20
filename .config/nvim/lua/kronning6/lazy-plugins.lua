@@ -37,7 +37,7 @@ require('lazy').setup {
   require 'kronning6.plugins.harpoon',
   -- require 'kronning6.plugins.ranger',
   require 'kronning6.plugins.oil',
-  require 'kronning6.plugins.markdown',
+  -- require 'kronning6.plugins.markdown',
   require 'kronning6.plugins.fringe-mode',
   require 'kronning6.plugins.aerial',
   require 'kronning6.plugins.supermaven',
