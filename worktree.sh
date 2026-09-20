@@ -2,6 +2,10 @@
 # ~/.local/bin/worktree-add
 set -e
 
+# wt() {
+#    /Users/kronning/code/machine-config/worktree.sh "$1" "$2"
+# }
+
 MAIN_DIR="$(git rev-parse --show-toplevel)"
 PARENT_DIR="$(dirname "$MAIN_DIR")"
 REPO_NAME="$(basename "$MAIN_DIR")"

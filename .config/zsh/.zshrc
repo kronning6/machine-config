@@ -1,75 +1,39 @@
-# User configuration
+# Put this at the absolute top of ~/.zshrc
+typeset -U path cdpath fpath manpath
+
 export TERM="tmux-256color"
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
-
-export XDG_CONFIG_HOME="$HOME/.config"
-
-export PIPENV_PYTHON="$HOME/.pyenv/shims/python"
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-export PATH=/Users/kronning/.local/bin:$PATH
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH=/Users/kronning/.fnm/current/bin:$PATH
-export PATH="/Users/kronning/.fnm:$PATH"
-
-export GOPATH=$HOME/go
-export GOBIN=$HOME/go/bin
-export PATH=$GOBIN:$PATH
-
-# pnpm
-export PNPM_HOME="/Users/kronning/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# opencode
-export PATH=/Users/kronning/.opencode/bin:$PATH
-
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
 
 # https://apple.stackexchange.com/questions/40734/why-is-my-host-name-wrong-at-the-terminal-prompt-when-connected-to-a-public-wifi
 # scutil --get HostName
 # sudo scutil --set HostName 'yourHostName'
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
-# Set readline-style keybindings that oh-my-zsh used to enable via bindkey -e.
+# Set readline-style/emacs-style keybindings for zsh line editing
 bindkey -e
-
 
 # TAB COMPLETIONS
 autoload -Uz compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-# fnm completions --shell bash
 
-
-# SET VARIABLES
-
-
-# BASH PROFILE ALIASES
+# NEOVIM ALIASES
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 alias nvim-lazyvim='NVIM_APPNAME="nvim-lazyvim" nvim'
 alias vi=nvim
 alias vim=nvim
-alias sourcebp='. ~/.zshrc'
-alias lessbp='less ~/.zshrc'
-alias catbp='cat ~/.zshrc'
-alias vimbp='vi  ~/.zshrc'
+
+# ZSH PROFILE ALIASES
+alias sourcebp='. "$ZDOTDIR/.zprofile"'
+alias lessbp='less "$ZDOTDIR/.zprofile"'
+alias catbp='cat "$ZDOTDIR/.zprofile"'
+alias vimbp='vi "$ZDOTDIR/.zprofile"'
+
+alias sourcerc='. "$ZDOTDIR/.zshrc"'
+alias lessrc='less "$ZDOTDIR/.zshrc"'
+alias catrc='cat "$ZDOTDIR/.zshrc"'
+alias vimrc='vi "$ZDOTDIR/.zshrc"'
 
 # SSH
 alias publickey='cat ~/.ssh/id_rsa.pub | pbcopy'
@@ -77,20 +41,14 @@ alias sshconfig='vi ~/.ssh/config'
 alias knownhosts='vi ~/.ssh/known_hosts'
 
 # SHORTCUT COMMANDS
-# alias cd='cd_fnm'
 alias ll='ls -laG'
 alias code='cd ~/code'
-alias cc='cd ~/code'
 alias ccc='cat_common_commands'
 
 # UTILITY COMMANDS
 alias gitlog="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias log_start_time='DATE_STRING=$(date +"%r %F");echo "Start Time: $DATE_STRING"'
 alias log_end_time='DATE_STRING=$(date +"%r %F");echo "End Time: $DATE_STRING"'
-
-wt() {
-    /Users/kronning/code/machine-config/worktree.sh "$1" "$2"
-}
 
 fzf_catppuccin-latte() {
     export FZF_DEFAULT_OPTS=" \
@@ -136,14 +94,6 @@ set_theme() {
     MYPWD=${PWD}
     code && cd machine-config && ./set_theme.sh $1
     cd $MYPWD
-}
-
-glowlight() {
-    glow -p -s ~/code/machine-config/.config/charm/glow/light.json $1
-}
-
-glowdark() {
-    glow -p -s ~/code/machine-config/.config/charm/glow/dark.json $1
 }
 
 cat_common_commands() {
@@ -192,10 +142,14 @@ gitcb() { #git checkout new branch
     git checkout -b $(ngb)$1
 }
 
-ap() {
-    pipenv run ansible-playbook $1
-}
+if [[ -r "${HOMEBREW_PREFIX:-}/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+  source "${HOMEBREW_PREFIX:-}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+elif [[ -r "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+  source "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
 
-# TODO: In the future, these should be installed directly.
-source "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [[ -r "${HOMEBREW_PREFIX:-}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  source "${HOMEBREW_PREFIX:-}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+elif [[ -r "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  source "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi

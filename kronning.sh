@@ -20,7 +20,7 @@ else
 fi
 
 DOTFILES=(
-  ".zshrc"
+  ".zshenv"
   ".config/aerospace"
   ".config/alacritty"
   ".config/ghostty"
@@ -35,6 +35,7 @@ DOTFILES=(
   # ".config/skhd"
   ".config/tmux"
   ".config/wezterm"
+  ".config/zsh"
   # ".config/yabai"
   ".config/zellij"
   ".config/starship.toml"
