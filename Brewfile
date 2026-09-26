@@ -8,6 +8,8 @@ brew  "docker"
 brew  "docker-compose"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Node verion manager
+brew "fnm"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GitHub command-line tool
@@ -21,6 +23,8 @@ brew "jq"
 brew "lazygit"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Python version manager
+brew "pyenv"
 # File browser
 brew "ranger"
 # Search tool like grep and The Silver Searcher
@@ -29,6 +33,8 @@ brew "ripgrep"
 brew "sesh"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Terraform version manager
+brew "tfenv"
 # Terminal multiplexer
 brew "tmux"
 # Parser generator tool
