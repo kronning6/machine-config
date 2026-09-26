@@ -22,9 +22,8 @@ fi
 DOTFILES=(
   ".zshenv"
   ".config/aerospace"
-  ".config/alacritty"
+  # ".config/alacritty"
   ".config/ghostty"
-  ".config/gitui"
   ".config/lazygit"
   ".config/nvim"
   ".config/nvim-kickstart"
@@ -34,15 +33,40 @@ DOTFILES=(
   ".config/sesh"
   # ".config/skhd"
   ".config/tmux"
-  ".config/wezterm"
+  # ".config/wezterm"
   ".config/zsh"
   # ".config/yabai"
-  ".config/zellij"
   ".config/starship.toml"
 )
 
+is_current_dotfile() {
+  local path="$1"
+  local dotfile
 
-for dotfile in "${DOTFILES[@]}";do
+  for dotfile in "${DOTFILES[@]}"; do
+    if [ "$path" = "${HOME}/${dotfile}" ]; then
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+for path in "${HOME}"/.* "${HOME}"/.config/*; do
+  [ -L "$path" ] || continue
+
+  target=$(readlink "$path")
+  case "$target" in
+    "${DIR}"/*)
+      if ! is_current_dotfile "$path"; then
+        rm "$path"
+        echo "Removed stale dotfile symlink: $path"
+      fi
+      ;;
+  esac
+done
+
+for dotfile in "${DOTFILES[@]}"; do
   rm -rf "${HOME}/${dotfile}"
   ln -sf "${DIR}/${dotfile}" "${HOME}/${dotfile}"
 done
