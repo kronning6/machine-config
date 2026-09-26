@@ -1,4 +1,11 @@
+# AWS CLI
 brew "awscli"
+# Docker Desktop alternative
+brew "colima"
+# Docker CLI
+brew  "docker"
+# Isolated development environments using Docker
+brew  "docker"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Command-line fuzzy finder written in Go
@@ -42,9 +49,8 @@ cask "font-jetbrains-mono-nerd-font"
 cask "keepassxc"
 cask "raycast"
 
-# Uninstalled apps by default
-# brew  "docker"
-
+# Apps not installed with Homebrew. Install these manually.
+# brew "opencode"
 # cask "chatgpt"
 # cask "claude"
 # cask "claude-code"
