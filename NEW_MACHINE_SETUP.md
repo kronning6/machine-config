@@ -80,4 +80,7 @@
 
 1. Generate [SSH Key and add to Github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
 2. Run `brew bundle install --file=~/code/machine-config/Brewfile`
-3. Run `./kronning.sh`
+3. Install latest runtimes: python, node, [go](https://go.dev/doc/install)
+4. Install [OpenCode](https://opencode.ai/)
+5. Run `./kronning.sh`
+6. Run `./scripts/setup-aws.sh`
