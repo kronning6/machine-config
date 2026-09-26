@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 DIR=$HOME/code/machine-config
-NEW_MACHINE_SETUP_DIR="${HOME}/code/new-machine-setup"
+MACHINE_SETUP_PRIVATE_DIR="${HOME}/code/machine-setup-private"
 EMAIL_FILE="${DIR}/.git-email"
 GITCONFIG_TEMPLATE="${DIR}/.gitconfig"
 GITCONFIG_TARGET="${HOME}/.gitconfig"
 
-if [ ! -d "${NEW_MACHINE_SETUP_DIR}/.git" ]; then
-  git clone git@github.com:kronning6/new-machine-setup.git "$NEW_MACHINE_SETUP_DIR"
+if [ ! -d "${MACHINE_SETUP_PRIVATE_DIR}/.git" ]; then
+  git clone git@github.com:kronning6/machine-setup-private.git "$MACHINE_SETUP_PRIVATE_DIR"
 fi
 
-"${NEW_MACHINE_SETUP_DIR}/clone-repositories.sh"
+"${MACHINE_SETUP_PRIVATE_DIR}/clone-repositories.sh"
 
 # TODO: Instead of doing this here, let's create a setup script that populates a gitignored file
 if [ -f "$EMAIL_FILE" ]; then
