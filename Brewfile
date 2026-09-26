@@ -5,7 +5,7 @@ brew "colima"
 # Docker CLI
 brew  "docker"
 # Isolated development environments using Docker
-brew  "docker"
+brew  "docker-compose"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Command-line fuzzy finder written in Go
