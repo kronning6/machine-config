@@ -9,8 +9,6 @@ else
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.fnm/current/bin:$PATH"
-export PATH="$HOME/.fnm:$PATH"
 
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"

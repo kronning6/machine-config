@@ -8,7 +8,11 @@ export TERM="tmux-256color"
 # sudo scutil --set HostName 'yourHostName'
 
 eval "$(pyenv init -)"
-eval "$(fnm env --use-on-cd)"
+FNM_PATH="/opt/homebrew/opt/fnm/bin"
+if [ -d "$FNM_PATH" ]; then
+    export PATH="$FNM_PATH:$PATH"
+    eval "$(fnm env --use-on-cd --shell zsh)"
+fi
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
@@ -112,17 +116,17 @@ COMMON COMMANDS
 CCC
 }
 
-cd_fnm() {
-    builtin cd "$@"
-
-    if [[ -f .node-version && .node-version ]]; then
-        echo "fnm: Found .node-version"
-        fnm use
-    elif [[ -f .nvmrc && .nvmrc ]]; then
-        echo "fnm: Found .nvmrc"
-        fnm use
-    fi
-}
+# cd_fnm() {
+#     builtin cd "$@"
+#
+#     if [[ -f .node-version && .node-version ]]; then
+#         echo "fnm: Found .node-version"
+#         fnm use
+#     elif [[ -f .nvmrc && .nvmrc ]]; then
+#         echo "fnm: Found .nvmrc"
+#         fnm use
+#     fi
+# }
 
 ngb() { #generate a new git branch name beginning
     local yearNumber=$(date +%y)
