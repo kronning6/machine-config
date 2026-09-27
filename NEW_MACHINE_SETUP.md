@@ -80,7 +80,10 @@
 
 1. Generate [SSH Key and add to Github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
 2. Run `brew bundle install --file=~/code/machine-config/Brewfile`
-3. Install latest runtimes: python, node, [go](https://go.dev/doc/install)
-4. Install [OpenCode](https://opencode.ai/)
-5. Run `./kronning.sh`
-6. Run `./scripts/setup-aws.sh`
+3. Install latest runtimes for node, python, [go](https://go.dev/doc/install)
+4. Install [pnpm](https://pnpm.io/installation)
+5. Install [OpenCode](https://opencode.ai/)
+6. Run `./kronning.sh`
+7. Run `./scripts/setup-aws.sh`
+8. Popuplate .env.development.local files
+9. Install other apps
