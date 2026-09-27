@@ -116,8 +116,3 @@ fi
 if [ ! -d ~/.config/nvim-lazyvim ]; then
   git clone https://github.com/LazyVim/starter.git ~/code/machine-config/.config/nvim-lazyvim
 fi
-
-# if [ -f ~/.aws/credentials ]; then
-#   awk -F '=' '/aws_access_key_id/ { gsub(/^[[:blank:]]+|[[:blank:]]+$/, "", $2); print "export AWS_ACCESS_KEY_ID=" $2 }' ~/.aws/credentials > ~/.zshrc_aws
-#   awk -F '=' '/aws_secret_access_key/ { gsub(/^[[:blank:]]+|[[:blank:]]+$/, "", $2); print "export AWS_SECRET_ACCESS_KEY=" $2 }' ~/.aws/credentials >> ~/.zshrc_aws
-# fi
