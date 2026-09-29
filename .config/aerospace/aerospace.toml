@@ -14,6 +14,7 @@
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
   #'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+  'layout --workspace 1 --root h_accordion'
 ]
 
 # Start AeroSpace at login
@@ -237,6 +238,14 @@ f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling
 # Left hand
 
 [[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Notes'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = "move-node-to-workspace 1"
 
@@ -246,18 +255,14 @@ run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
-if.app-id = 'com.apple.ActivityMonitor'
+if.app-id = 'com.figma.Desktop'
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
 if.app-id = 'notion.id'
-run = "move-node-to-workspace 3"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.Notes'
 run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
@@ -279,11 +284,7 @@ if.app-id = 'com.mitchellh.ghostty'
 run = "move-node-to-workspace 7"
 
 [[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace 7"
-
-[[on-window-detected]]
-if.app-id = 'com.figma.Desktop'
+if.app-id = 'com.zed-industries.delta'
 run = "move-node-to-workspace 8"
 
 [[on-window-detected]]
