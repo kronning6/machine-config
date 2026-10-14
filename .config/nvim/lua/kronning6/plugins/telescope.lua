@@ -46,6 +46,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Ignore .turbo
     table.insert(vimgrep_arguments, '--glob')
     table.insert(vimgrep_arguments, '!**/.turbo/*')
+    -- Ignore .delta (worktrees created by external app)
+    table.insert(vimgrep_arguments, '--glob')
+    table.insert(vimgrep_arguments, '!**/.delta/*')
 
     -- See `:help telescope` and `:help telescope.setup()`
     telescope.setup {
@@ -63,7 +66,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
       },
       pickers = {
         find_files = {
-          find_command = { 'rg', '--files', '--hidden', '--no-ignore', '--glob', '!**/.git/*', '--glob', '!**/node_modules/*' },
+          find_command = { 'rg', '--files', '--hidden', '--no-ignore', '--glob', '!**/.git/*', '--glob', '!**/node_modules/*', '--glob', '!**/.delta/*' },
         },
         buffers = {
           mappings = {
