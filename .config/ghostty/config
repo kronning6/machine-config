@@ -7,4 +7,6 @@ window-padding-y = 10,4
 font-family = "JetBrainsMonoNL NFM SemiBold"
 font-size = "14"
 
+keybind = cmd+enter=unbind
+
 config-file = theme_config/current
