@@ -1,3 +1,4 @@
+.DS_Store
 .git-email
 !.config/
 .config/alacritty/themes/current.toml
