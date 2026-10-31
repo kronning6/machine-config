@@ -91,6 +91,13 @@ Reference of less used keybindings
 
 - [Implement multiple workspaces per display](https://github.com/nikitabobko/AeroSpace/issues/465)
 
+### Explore bare git repo or alternative
+
+- https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
+  - https://www.atlassian.com/git/tutorials/dotfiles
+  - https://earthly.dev/blog/mng-dotfiles-with-git/
+- https://www.jakewiesler.com/blog/managing-dotfiles#understanding-stow
+
 ## My Unique Features
 
 ### Quick Color Theme Switcher
