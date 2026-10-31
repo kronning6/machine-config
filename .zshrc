@@ -35,13 +35,14 @@ alias lessenv='less "$HOME/.zshenv"'
 alias catenv='cat "$HOME/.zshenv"'
 alias vimenv='vi "$HOME/.zshenv"'
 
+alias sourcebp='. "$HOME/.zshrc"'
 alias sourcerc='. "$HOME/.zshrc"'
 alias lessrc='less "$HOME/.zshrc"'
 alias catrc='cat "$HOME/.zshrc"'
 alias vimrc='vi "$HOME/.zshrc"'
 
 # SSH
-alias publickey='cat ~/.ssh/id_rsa.pub | pbcopy'
+alias publickey='cat ~/.ssh/id_ed25519.pub | pbcopy'
 alias sshconfig='vi ~/.ssh/config'
 alias knownhosts='vi ~/.ssh/known_hosts'
 
