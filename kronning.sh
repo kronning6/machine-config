@@ -147,6 +147,21 @@ install_dependencies() {
   fi
 }
 
+# --- Docker CLI plugins ---------------------------------------------------
+
+setup_docker_plugins() {
+  local compose_path
+  compose_path="$(brew --prefix docker-compose)/bin/docker-compose"
+
+  if [ ! -x "$compose_path" ]; then
+    echo "docker-compose is not installed. Run brew bundle install first." >&2
+    return 1
+  fi
+
+  mkdir -p "${HOME}/.docker/cli-plugins"
+  ln -sfn "$compose_path" "${HOME}/.docker/cli-plugins/docker-compose"
+}
+
 # --- Main -----------------------------------------------------------------
 
 # Git identity: resolve the email first, then write ~/.gitconfig with it.
@@ -156,6 +171,6 @@ write_gitconfig
 # Dotfiles: prune stale symlinks, then link the current set.
 link_dotfiles
 
-# Git checkouts: private repos first, then plugin/starter dependencies.
+setup_docker_plugins
 ensure_private_repos
 install_dependencies
