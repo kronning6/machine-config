@@ -13,6 +13,7 @@ GIT_EMAIL=""
 
 DOTFILES=(
   ".zshenv"
+  ".zshrc"
   ".config/aerospace"
   # ".config/alacritty"
   ".config/ghostty"
@@ -26,7 +27,6 @@ DOTFILES=(
   # ".config/skhd"
   ".config/tmux"
   # ".config/wezterm"
-  ".config/zsh"
   # ".config/yabai"
   ".config/starship.toml"
 )

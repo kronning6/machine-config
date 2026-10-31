@@ -1,5 +1,11 @@
+# Interactive shell settings: prompt, aliases, completions, and history.
+
 # Put this at the absolute top of ~/.zshrc
 typeset -U path cdpath fpath manpath
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=10000
 
 export TERM="tmux-256color"
 
@@ -8,11 +14,6 @@ export TERM="tmux-256color"
 # sudo scutil --set HostName 'yourHostName'
 
 eval "$(pyenv init -)"
-FNM_PATH="/opt/homebrew/opt/fnm/bin"
-if [ -d "$FNM_PATH" ]; then
-    export PATH="$FNM_PATH:$PATH"
-    eval "$(fnm env --use-on-cd --shell zsh)"
-fi
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
@@ -28,16 +29,16 @@ alias nvim-lazyvim='NVIM_APPNAME="nvim-lazyvim" nvim'
 alias vi=nvim
 alias vim=nvim
 
-# ZSH PROFILE ALIASES
-alias sourcebp='. "$ZDOTDIR/.zprofile"'
-alias lessbp='less "$ZDOTDIR/.zprofile"'
-alias catbp='cat "$ZDOTDIR/.zprofile"'
-alias vimbp='vi "$ZDOTDIR/.zprofile"'
+# ZSH CONFIG ALIASES
+alias sourceenv='. "$HOME/.zshenv"'
+alias lessenv='less "$HOME/.zshenv"'
+alias catenv='cat "$HOME/.zshenv"'
+alias vimenv='vi "$HOME/.zshenv"'
 
-alias sourcerc='. "$ZDOTDIR/.zshrc"'
-alias lessrc='less "$ZDOTDIR/.zshrc"'
-alias catrc='cat "$ZDOTDIR/.zshrc"'
-alias vimrc='vi "$ZDOTDIR/.zshrc"'
+alias sourcerc='. "$HOME/.zshrc"'
+alias lessrc='less "$HOME/.zshrc"'
+alias catrc='cat "$HOME/.zshrc"'
+alias vimrc='vi "$HOME/.zshrc"'
 
 # SSH
 alias publickey='cat ~/.ssh/id_rsa.pub | pbcopy'
