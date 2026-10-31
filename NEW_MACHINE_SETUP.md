@@ -79,11 +79,23 @@
 ## Machine Config
 
 1. Generate [SSH Key and add to Github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-2. Run `brew bundle install --file=~/code/machine-config/Brewfile`
-3. Install latest runtimes for node, python, [go](https://go.dev/doc/install)
-4. Install [pnpm](https://pnpm.io/installation)
-5. Install [OpenCode](https://opencode.ai/)
-6. Run `./kronning.sh`
-7. Run `./scripts/setup-aws.sh`
-8. Popuplate .env.development.local files
-9. Install other apps
+2. Clone [machine-config](https://github.com/kronning6/machine-config)
+3. Run `brew bundle install --file=~/code/machine-config/Brewfile`
+4. Install latest runtimes for node, python, [go](https://go.dev/doc/install)
+5. Install [pnpm](https://pnpm.io/installation)
+6. Install [OpenCode](https://opencode.ai/)
+7. Run `./kronning.sh` (also registers the Docker Compose CLI plugin)
+8. Run `./scripts/setup-aws.sh`
+9. Populate .env.development.local files
+10. Install other apps
+
+
+## Homebrew Commands
+
+```bash
+brew bundle install --file=~/path/to/Brewfile
+
+brew bundle check --file=~/path/to/Brewfile
+
+brew bundle cleanup --file=~/path/to/Brewfile
+```
