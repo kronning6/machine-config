@@ -119,6 +119,7 @@ link_dotfiles() {
 
   for dotfile in "${DOTFILES[@]}"; do
     rm -rf "${HOME}/${dotfile}"
+    mkdir -p "$(dirname "${HOME}/${dotfile}")"
     ln -sf "${DIR}/${dotfile}" "${HOME}/${dotfile}"
   done
 }
