@@ -56,36 +56,6 @@ alias gitlog="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C
 alias log_start_time='DATE_STRING=$(date +"%r %F");echo "Start Time: $DATE_STRING"'
 alias log_end_time='DATE_STRING=$(date +"%r %F");echo "End Time: $DATE_STRING"'
 
-fzf_catppuccin-latte() {
-    export FZF_DEFAULT_OPTS=" \
-    --color=bg+:#ccd1da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
-    --color=fg:#3c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
-    --color=marker:#dc7a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"
-}
-
-fzf_catppuccin-frappe() {
-    export FZF_DEFAULT_OPTS=" \
-    --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
-    --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
-    --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
-}
-
-fzf_tokyonight-day() {
-    export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
-    --color=fg:#3760bf,bg:#e1e2e7,hl:#b15c00 \
-    --color=fg+:#3760bf,bg+:#c4c8da,hl+:#b15c00 \
-    --color=info:#2e7de9,prompt:#007197,pointer:#007197 \
-    --color=marker:#587539,spinner:#587539,header:#587539"
-}
-
-fzf_tokyonight-storm() {
-    export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
-    --color=fg:#c0caf5,bg:#1a1b26,hl:#ff9e64 \
-    --color=fg+:#c0caf5,bg+:#292e42,hl+:#ff9e64 \
-    --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff \
-    --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a"
-}
-
 # functions
 stlight() {
     # set_theme "catppuccin-latte"

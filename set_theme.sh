@@ -27,6 +27,3 @@ echo "vim.cmd(\"colorscheme ${theme}\")" > "${DIR}/nvim/lua/kronning6/current-th
 
 cp "${DIR}/tmux/themes/${theme}.conf" "${DIR}/tmux/themes/current.conf"
 tmux source-file "${DIR}/tmux/tmux.conf"
-
-# TODO: Figure out how to set fzf theme
-# $(fzf_${theme})
