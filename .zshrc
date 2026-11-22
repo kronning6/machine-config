@@ -7,8 +7,6 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 
-export TERM="tmux-256color"
-
 # https://apple.stackexchange.com/questions/40734/why-is-my-host-name-wrong-at-the-terminal-prompt-when-connected-to-a-public-wifi
 # scutil --get HostName
 # sudo scutil --set HostName 'yourHostName'
