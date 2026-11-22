@@ -11,8 +11,8 @@
     "thinking": "show"
   },
   "tabs": {
-    "mode": "auto",
-    "layout": "horizontal",
+    "mode": "off",
+    "layout": "vertical",
     "indicators": "numbers"
   },
   "diffs": {
