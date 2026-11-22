@@ -23,6 +23,7 @@ DOTFILES=(
   ".config/nvim-lazyvim"
   ".config/opencode"
   ".config/ranger"
+  ".config/rex"
   ".config/sesh"
   # ".config/skhd"
   ".config/tmux"

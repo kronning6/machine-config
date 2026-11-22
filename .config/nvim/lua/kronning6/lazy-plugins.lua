@@ -26,6 +26,7 @@ require('lazy').setup {
   -- My plugins
   require 'kronning6.plugins.lualine',
   require 'kronning6.plugins.vim-tmux-navigator',
+  require 'kronning6.plugins.rex-navigator',
   require 'kronning6.plugins.theme-catppuccin',
   require 'kronning6.plugins.theme-tokyonight',
   require 'kronning6.plugins.alpha',
