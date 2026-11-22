@@ -99,3 +99,10 @@ brew bundle check --file=~/path/to/Brewfile
 
 brew bundle cleanup --file=~/path/to/Brewfile
 ```
+
+## Additional Changes
+
+These are additional dependencies since my last fresh install
+
+- `gh extension install github/gh-stack # stacked PR support`
+- Changed from Ghostty/tmux to Rex
