@@ -16,6 +16,7 @@ DOTFILES=(
   ".zshrc"
   ".config/aerospace"
   # ".config/alacritty"
+  ".config/claude"
   ".config/ghostty"
   ".config/lazygit"
   ".config/nvim"
